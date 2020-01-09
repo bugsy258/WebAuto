@@ -15,15 +15,11 @@ public class DriverInit {
 	private WebDriver driver;
 
 	// Constructor
-	private DriverInit() {
+	private DriverInit(String browserType) {
 		switch (browserType) {
 		case "chrome":
 			System.setProperty(Constants.setPropertyChrome, Constants.chromefile);
 			driver = new ChromeDriver();
-			break;
-		case "firefox":
-			System.setProperty(Constants.setPropertyMozilla, Constants.mozillafile);
-			driver = new FirefoxDriver();
 			break;
 		default:
 			System.out.println("browser : " + browserType + " is invalid, Launching Firefox as browser of choice..");
@@ -38,7 +34,7 @@ public class DriverInit {
 	// TO create instance of class
 	public static DriverInit getInstance() {
 		if (instance == null) {
-			instance = new DriverInit();
+			instance = new DriverInit("chrome");
 		}
 		return instance;
 	}
